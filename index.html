@@ -1,23 +1,112 @@
-<html>
+
+
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<title>Descarga el tuyo
-</title><h1>descarga el tuyo<p><a href="https://carlis2.github.io/descarga-el-tuyo/"><img src="hola.jpg"><p><a><p><img src="hola2.jpg"><p><a><img src="1.jpg"><p></a>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecciones</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
+<body>
+    <div class="container" id="content">
+        <p>Espera 10 segundos...</p>
+        <p id="timer">10</p>
+    </div>
 
+    <script>
+        let clicks = 0;
+        const maxClicks = 3;
 
-<body>hola bienvenidos a descarga el tuyo<p>
-<h2>pagina retro<h2>
-</p>
+        // Primer contador: 10 segundos
+        let counter = 10;
+        const interval1 = setInterval(() => {
+            counter--;
+            document.getElementById('timer').textContent = counter;
+            if (counter <= 0) {
+                clearInterval(interval1);
+                showAd1();
+            }
+        }, 1000);
 
+        function showAd1() {
+            document.getElementById('content').innerHTML = `
+                <h2>Anuncio 1</h2>
+                <p>Espera 5 segundos para activar el botón...</p>
+                <p id="timer2">5</p>
+                <button id="btn" disabled>Botón (deshabilitado)</button>
+            `;
 
-<img src="me.jpg">metal slug 1<p><a href="http://www.mediafire.com/file/1qylx6sq1yldn0u/Metal_Slug_1.rar/file"><p><img src="descarga.jpg"><p></a><img src="me.jpg">metal slug 2 <p><a href="http://www.mediafire.com/file/wf66y0mepmrp21q/Metal_Slug_2_By_GBMTutoriales.rar/file"><img src="descarga.jpg"></p>
-</a>
-<img src="me.jpg">metal slug 3</p><a href="https://www.mediafire.com/file/o19jpdz58knot9v/TANKMAN+PRERELEASE+by+KadeDe3v+-+Kade+Engine.rar/file"><img src="descarga.jpg"><p><a><img src="me.jpg">metal slug 4<p><a href="https://mega.nz/file/OxplzQgI#AhwiZBn87BoO0lqlw6CBnTVQuBgsUhG90gtHSIYzpYs"><img src="descarga.jpg"><a></a>
-</a>
+            let counter2 = 5;
+            const interval2 = setInterval(() => {
+                counter2--;
+                document.getElementById('timer2').textContent = counter2;
+                if (counter2 <= 0) {
+                    clearInterval(interval2);
+                    document.getElementById('btn').disabled = false;
+                    document.getElementById('btn').textContent = 'Ir al Anuncio';
+                }
+            }, 1000);
 
+            document.getElementById('btn').addEventListener('click', handleButtonClick);
+        }
 
+        function handleButtonClick() {
+            clicks++;
+            if (clicks < maxClicks) {
+                document.getElementById('content').innerHTML = `
+                    <h2>Anuncio 2</h2>
+                    <p>Has hecho clic ${clicks} de ${maxClicks}</p>
+                    <p>Espera 5 segundos...</p>
+                    <p id="timer3">5</p>
+                    <button id="btn" disabled>Botón (deshabilitado)</button>
+                `;
+
+                let counter3 = 5;
+                const interval3 = setInterval(() => {
+                    counter3--;
+                    document.getElementById('timer3').textContent = counter3;
+                    if (counter3 <= 0) {
+                        clearInterval(interval3);
+                        document.getElementById('btn').disabled = false;
+                        document.getElementById('btn').textContent = 'Ir al Anuncio';
+                    }
+                }, 1000);
+
+                document.getElementById('btn').addEventListener('click', handleButtonClick);
+            } else {
+                window.location.href = 'https://github.com/copilot';
+            }
+        }
+    </script>
 </body>
-
-
-
 </html>
